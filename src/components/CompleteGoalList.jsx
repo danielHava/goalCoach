@@ -25,11 +25,31 @@ class CompleteGoalList extends Component {
         completeGoalRef.set([]);
     }
     render() {
+
+        let completed;
+        if (this.props.completeGoals.length === 0) {
+            completed = <tr>
+                <td></td>
+                <td>
+                    <p>You have no completed goals.</p>
+                </td>
+                <td></td>
+            </tr>;
+        } else {
+            completed = this.props.completeGoals.map((goal, index) => {
+                return ( 
+                    <tr key={index}>
+                        <th scope="row">{index}</th>
+                        <td>{goal.title}</td>
+                        <td>{goal.email}</td>
+                    </tr>
+                )
+            });
+        }
+
         return (
             <div>
-                <Row
-                    className="mt-5 mb-3"
-                >
+                <Row className="mt-5 mb-3">
                     <Col sm={8}>
                         <h4>
                             Complete Goal List
@@ -45,9 +65,7 @@ class CompleteGoalList extends Component {
                         </Button>
                     </Col>
                 </Row>
-                <Row
-                    className="mt-5 mb-3"
-                >
+                <Row className="mt-5 mb-3">
                     <Col sm={12}>
                         <Table hover>
                             <thead>
@@ -58,17 +76,7 @@ class CompleteGoalList extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                                {
-                                    this.props.completeGoals.map((goal, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <th scope="row">{index}</th>
-                                                <td>{goal.title}</td>
-                                                <td>{goal.email}</td>
-                                            </tr>
-                                        )
-                                    })
-                                }
+                                {completed}
                             </tbody>
                         </Table>
                     </Col>

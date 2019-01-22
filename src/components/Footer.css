@@ -1,0 +1,12 @@
+#footer{
+    background-color: #343a40;
+}
+#footer hr{
+    background-color: white;
+}
+#footer .list-inline-item:not(:last-child) {
+    margin-right: 1.5rem;
+}
+#footer a:hover{
+    text-decoration: none;
+}
