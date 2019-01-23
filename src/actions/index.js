@@ -1,4 +1,4 @@
-import { SIGNED_IN, SET_GOALS, SET_COMPLETE_GOALS } from '../constants';
+import { SIGNED_IN, SET_GOALS, SET_COMPLETE_GOALS, SHOW_MODAL, HIDE_MODAL } from '../constants';
 
 export function logUser(email){
     const action = {
@@ -20,6 +20,24 @@ export function setCompleteGoals(completeGoals){
     const action = {
         type: SET_COMPLETE_GOALS,
         completeGoals
+    }
+    return action;
+}
+
+export function showSignInMOdal(){
+    const action = {
+        type: SHOW_MODAL,
+        modalType: 'SIGN_IN',
+        modalProps: {}
+    }
+    return action;
+}
+
+export function hideSignInMOdal(){
+    const action = {
+        type: HIDE_MODAL,
+        modalType: 'SIGN_IN',
+        modalProps: {}
     }
     return action;
 }

@@ -8,7 +8,12 @@ import {
     Nav,
     NavItem,
     NavLink,
+    Button
 } from 'reactstrap';
+
+import { showSignInMOdal } from '../actions'
+import { connect } from 'react-redux';
+
 import { firebaseApp } from '../firebase';
 import history from '../history'
 import './Header.css';
@@ -21,12 +26,17 @@ class Header extends Component {
         isOpen: false
     };
     this.toggle = this.toggle.bind(this);
+    // this.toggleModal = this.toggleModal.bind(this);
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+//   toggleModal() {
+//     // toggle modal
+//     this.props.showSignInMOdal();
+//   }
   signOut(){
     firebaseApp.auth().signOut();
     history.push('/');
@@ -36,27 +46,42 @@ class Header extends Component {
         <Navbar color="dark" dark expand="sm">
             <Container>
                 <NavbarBrand href="/">
-                    <FontAwesomeIcon icon="calendar-check" color="#d81b60" size="2x" className="logo"/>
+                    <FontAwesomeIcon icon="satellite" color="#d81b60" size="2x" className="logo"/>
                     <h1>
-                        TaskMaster
+                        Begamas
                     </h1>
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar pills>
                         <NavItem>
-                            <NavLink href="/">Home</NavLink>
+                            <NavLink href="/">
+                                <span>Home</span>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/tasks">Tasks</NavLink>
+                            <NavLink href="/tasks">
+                                <span>Tasks</span>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/signin">Sign In</NavLink>
+                            <NavLink href="/spend">
+                                <span>Marketplace</span>
+                                {/* <FontAwesomeIcon icon="rocket" color="#d81b60" size="x" className="ml-1 spend_points"/> */}
+                            </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink 
-                                onClick={() => this.signOut()}>
-                                Sign out
+                            <NavLink href="/earn">
+                                <span>Buy</span>
+                                <FontAwesomeIcon icon="rocket" color="#007bff" size="x" className="ml-1 earn_points"/>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink>
+                                <Button 
+                                    onClick={() => this.props.showSignInMOdal()}>
+                                    <span>Login / Register</span>
+                                </Button>
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -67,4 +92,4 @@ class Header extends Component {
   }
 }
   
-export default Header;
+export default connect(null, { showSignInMOdal })(Header);

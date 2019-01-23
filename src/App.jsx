@@ -6,6 +6,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ModalRoot from './components/ModalRoot';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -33,6 +34,7 @@ class App extends Component {
         super(props);
         this.state = {
             authenticated: false,
+            modalOpen: false
         }
     }
     
@@ -48,6 +50,7 @@ class App extends Component {
                             <Route path="/signin" component={SignIn} />
                             <Route path="/signup" component={SignUp} />
                         </Switch>
+                        <ModalRoot />
                         <Footer />
                     </div>
                 </Router>
