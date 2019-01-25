@@ -1,0 +1,27 @@
+.social_media_login{
+    border-right: 1px solid #6c757d;
+}
+.social_media_buttons{
+    display: flex;
+    flex-direction: column;
+}
+.social_media_buttons button{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.social_media_buttons button:hover, .social_media_buttons button:active{
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+}
+.social_media_buttons button:not(:last-child){
+    margin-bottom: 1rem;
+}
+button.signup_link{
+    color: #d81b60;
+}
+button.signup_link:hover{
+    color: #d81b60;
+    text-decoration: none;
+}
