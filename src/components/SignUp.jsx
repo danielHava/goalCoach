@@ -65,13 +65,15 @@ class SignUp extends Component {
               />
             </Col>
           </FormGroup>
-          <Button
-            color="primary"
-            onClick = {() => this.signUp()}
-          >
-            Sign Up
-          </Button>
           <Row className="mt-3">
+            <Col>
+              <Button
+                color="primary"
+                onClick = {() => this.signUp()}
+              >
+                Sign Up
+              </Button>
+            </Col>
             <Col>
               {this.state.error.message}
               <Link to="/signin">Already a user? Sign in instead</Link>

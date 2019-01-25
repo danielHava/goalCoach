@@ -5,7 +5,7 @@ import AddGoal from './AddGoal';
 import GoalList from './GoalList';
 import CompleteGoalList from './CompleteGoalList';
 
-const Title = (props) => {
+const Title = props => {
     return(
         <h2>Welcome back, {props.name}!</h2>
     );

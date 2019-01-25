@@ -24,7 +24,7 @@ export function setCompleteGoals(completeGoals){
     return action;
 }
 
-export function showSignInMOdal(){
+export function showSignInModal(){
     const action = {
         type: SHOW_MODAL,
         modalType: 'SIGN_IN',
@@ -33,10 +33,28 @@ export function showSignInMOdal(){
     return action;
 }
 
-export function hideSignInMOdal(){
+export function hideSignInModal(){
     const action = {
         type: HIDE_MODAL,
         modalType: 'SIGN_IN',
+        modalProps: {}
+    }
+    return action;
+}
+
+export function showSignUpModal(){
+    const action = {
+        type: SHOW_MODAL,
+        modalType: 'SIGN_UP',
+        modalProps: {}
+    }
+    return action;
+}
+
+export function hideSignUpModal(){
+    const action = {
+        type: HIDE_MODAL,
+        modalType: 'SIGN_UP',
         modalProps: {}
     }
     return action;

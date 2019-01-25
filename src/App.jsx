@@ -8,16 +8,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ModalRoot from './components/ModalRoot';
 
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import { firebaseApp } from './firebase';
 
-import history from './history'
-import reducer from './reducers';
 import { logUser } from './actions';
-
-const store = createStore(reducer);
+import history from './history'
+import store from './store';
 
 firebaseApp.auth().onAuthStateChanged(user => {
     if(user){
@@ -28,7 +25,6 @@ firebaseApp.auth().onAuthStateChanged(user => {
         // history.replace('/signin');
     }
 });
-
 class App extends Component {
     constructor(props) {
         super(props);

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import SignInModal from './SignInModal.jsx'
 // import ConfirmLogoutModal from './ConfirmLogoutModal'
+import './Modal.css';
+
 
 const MODAL_COMPONENTS = {
   'SIGN_IN': SignInModal,
