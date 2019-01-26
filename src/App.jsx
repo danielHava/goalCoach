@@ -12,28 +12,20 @@ import { Provider } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import { firebaseApp } from './firebase';
 
-import { logUser } from './actions';
+import { userLogIn } from './actions';
 import history from './history'
 import store from './store';
 
 firebaseApp.auth().onAuthStateChanged(user => {
     if(user){
         const { email } = user;
-        store.dispatch(logUser(email));
+        store.dispatch(userLogIn(email));
         // history.push('/app');
     }else{
         // history.replace('/signin');
     }
 });
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            authenticated: false,
-            modalOpen: false
-        }
-    }
-    
+class App extends Component {   
     render() {
         return (
             <Provider store={store}>

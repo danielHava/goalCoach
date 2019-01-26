@@ -9,9 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faHeart, faCalendarCheck, faRocket, faSatellite, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faHeart, faCalendarCheck, faRocket, faSatellite, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-library.add(fab, faHeart, faEnvelope, faCalendarCheck, faRocket, faSatellite, faTimes );
+library.add(fab, faHeart, faEnvelope, faCalendarCheck, faRocket, faSatellite, faTimes, faSearch );
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

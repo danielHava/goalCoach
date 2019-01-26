@@ -9,6 +9,8 @@ import {
 	Input
 } from 'reactstrap';
 import { firebaseApp } from '../firebase';
+import { hideSignInModal } from '../actions'
+import { connect } from 'react-redux';
 
 class SignIn extends Component {
 	constructor(props){
@@ -30,6 +32,7 @@ class SignIn extends Component {
 				console.log('error', error);
 				this.setState({ error });
 			});
+		this.props.hideSignInModal();
 	}
 
 	render() {
@@ -92,4 +95,4 @@ class SignIn extends Component {
 	}
 }
   
-export default SignIn;
+export default connect(null, { hideSignInModal })(SignIn);

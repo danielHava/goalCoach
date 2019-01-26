@@ -1,9 +1,16 @@
-import { SIGNED_IN, SET_GOALS, SET_COMPLETE_GOALS, SHOW_MODAL, HIDE_MODAL } from '../constants';
+import { SIGNED_IN, SIGNED_OUT, SET_GOALS, SET_COMPLETE_GOALS, SHOW_MODAL, HIDE_MODAL } from '../constants';
 
-export function logUser(email){
+export function userLogIn(email){
     const action = {
         type: SIGNED_IN,
         email
+    }
+    return action;
+}
+
+export function userLogOut(){
+    const action = {
+        type: SIGNED_OUT,
     }
     return action;
 }

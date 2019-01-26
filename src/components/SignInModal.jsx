@@ -94,6 +94,7 @@ class SignInModal extends Component {
         );
     }
 }
+
 function mapStateToProps(state){
     return state;
 }
