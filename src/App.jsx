@@ -1,50 +1,23 @@
-import React, { Component } from 'react';
-
-import Home from './components/Home';
-import TaskManager from './components/TaskManager';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ModalRoot from './components/ModalRoot';
-
+import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route } from 'react-router-dom';
 import { firebaseApp } from './firebase';
-
 import { userLogIn } from './actions';
-import history from './history'
 import store from './store';
+import AppRouter from './components/routers/AppRouter';
 
 firebaseApp.auth().onAuthStateChanged(user => {
     if(user){
-        const { email } = user;
-        store.dispatch(userLogIn(email));
-        // history.push('/app');
+        store.dispatch(userLogIn(user));
     }else{
-        // history.replace('/signin');
+        console.log('sign out');
     }
 });
-class App extends Component {   
-    render() {
-        return (
-            <Provider store={store}>
-                <Router path="/" history={history}>
-                    <div>
-                        <Header />
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/tasks" component={TaskManager} />
-                            <Route path="/signin" component={SignIn} />
-                            <Route path="/signup" component={SignUp} />
-                        </Switch>
-                        <ModalRoot />
-                        <Footer />
-                    </div>
-                </Router>
-            </Provider>
-        );
-    }
+const App = () => {
+    return (
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    );
 }
 
 export default App;

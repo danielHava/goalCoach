@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SignInModal from './SignInModal.jsx'
+import SignUpModal from './SignUpModal.jsx'
 // import ConfirmLogoutModal from './ConfirmLogoutModal'
 import './Modal.css';
 
 
 const MODAL_COMPONENTS = {
   'SIGN_IN': SignInModal,
-  // 'CONFIRM_LOGOUT': ConfirmLogoutModal,
+  'SIGN_UP': SignUpModal,
   /* other modals */
 }
 

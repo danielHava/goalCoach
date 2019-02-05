@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { hideSignUpModal } from '../actions'
+import { hideSignUpModal } from '../../actions'
 import { connect } from 'react-redux';
-import SignUp from './SignUp';
+import SignUp from '../SignUp';
 import ReactModal from 'react-modal';
 import {
     Button

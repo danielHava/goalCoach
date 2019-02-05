@@ -1,9 +1,9 @@
 import { SIGNED_IN, SIGNED_OUT, SET_GOALS, SET_COMPLETE_GOALS, SHOW_MODAL, HIDE_MODAL } from '../constants';
 
-export function userLogIn(email){
+export function userLogIn(user){
     const action = {
         type: SIGNED_IN,
-        email
+        data: user
     }
     return action;
 }

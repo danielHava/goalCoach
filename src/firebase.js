@@ -12,5 +12,9 @@ const config = {
 };
 
 export const firebaseApp = firebase.initializeApp(config);
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+export const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+export const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 export const goalRef = firebase.database().ref('goals');
 export const completeGoalRef = firebase.database().ref('completeGoals');

@@ -20,9 +20,7 @@ const Logo = props => {
     return(
         <NavbarBrand href={props.url} className={props.class}>
             <FontAwesomeIcon icon={props.icon} color={props.iconColour} size={props.iconSize} />
-            <h1>
-                {props.name}
-            </h1>
+            <h1>{props.name}</h1>
         </NavbarBrand>
     );
 }
@@ -37,6 +35,7 @@ class Header extends Component {
 			}
         };
         this.toggle = this.toggle.bind(this);
+        this.signOut = this.signOut.bind(this);
     }
 
     toggle() {
@@ -92,6 +91,11 @@ class Header extends Component {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink href="/dashboard">
+                                    <span>Dashboard</span>
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href="/tasks">
                                     <span>Tasks</span>
                                 </NavLink>
@@ -120,16 +124,14 @@ class Header extends Component {
 
 function mapStateToProps(state){
     const { user } = state;
-    return {
-        user
-    }
+    return { user };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         signInModal: () => dispatch(showSignInModal()),
         logOut: () => dispatch(userLogOut())
-    }
+    };
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
