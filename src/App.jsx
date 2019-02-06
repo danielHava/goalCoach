@@ -12,6 +12,7 @@ firebaseApp.auth().onAuthStateChanged(user => {
         console.log('sign out');
     }
 });
+
 const App = () => {
     return (
         <Provider store={store}>

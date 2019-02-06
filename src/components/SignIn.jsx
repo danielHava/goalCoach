@@ -83,7 +83,10 @@ class SignIn extends Component {
 			}
 		}
 		this.signInWithEmail = this.signInWithEmail.bind(this);
-		this.signInWithSocial = this.signInWithSocial.bind(this);
+		this.signInWithGoogle = this.signInWithGoogle.bind(this);
+		this.signInWithFacebook = this.signInWithFacebook.bind(this);
+		this.signInWithTwitter = this.signInWithTwitter.bind(this);
+		this.signInWithGitHub = this.signInWithGitHub.bind(this);
 	}
 
 	signInWithEmail(){
@@ -96,11 +99,47 @@ class SignIn extends Component {
 		this.props.hideSignInModal();
 	}
 
-	signInWithSocial(provider){
-		firebaseApp.auth().signInWithPopup(provider).then(result => {
+	signInWithGoogle(){
+		firebaseApp.auth().signInWithPopup(googleAuthProvider).then(result => {
 			// const token = result.credential.accessToken;
 			// const user = result.user;
-			console.log(`Logged in with ${provider}`);
+			console.log('Logged in with Google');
+		}).catch(error => {
+			console.log('error', error);
+			this.setState({ error });
+		});
+		this.props.hideSignInModal();
+	}
+
+	signInWithFacebook(){
+		firebaseApp.auth().signInWithPopup(facebookAuthProvider).then(result => {
+			// const token = result.credential.accessToken;
+			// const user = result.user;
+			console.log('Logged in with Facebook');
+		}).catch(error => {
+			console.log('error', error);
+			this.setState({ error });
+		});
+		this.props.hideSignInModal();
+	}
+
+	signInWithTwitter(){
+		firebaseApp.auth().signInWithPopup(twitterAuthProvider).then(result => {
+			// const token = result.credential.accessToken;
+			// const user = result.user;
+			console.log('Logged in with Twitter');
+		}).catch(error => {
+			console.log('error', error);
+			this.setState({ error });
+		});
+		this.props.hideSignInModal();
+	}
+
+	signInWithGitHub(){
+		firebaseApp.auth().signInWithPopup(githubAuthProvider).then(result => {
+			// const token = result.credential.accessToken;
+			// const user = result.user;
+			console.log('Logged in with GitHub');
 		}).catch(error => {
 			console.log('error', error);
 			this.setState({ error });
@@ -114,10 +153,10 @@ class SignIn extends Component {
 				<Col sm="4" className="social_media_login">
 					<SocialMediaLogin 
 						title="Or Using..."
-						signInGoogle={this.signInWithSocial(googleAuthProvider)}
-						signInFacebook={this.signInWithSocial(facebookAuthProvider)}
-						signInTwitter={this.signInWithSocial(twitterAuthProvider)}
-						signInGitHub={this.signInWithSocial(githubAuthProvider)}
+						signInGoogle={this.signInWithGoogle}
+						signInFacebook={this.signInWithFacebook}
+						signInTwitter={this.signInWithTwitter}
+						signInGitHub={this.signInWithGitHub}
 					/>
 				</Col>
 				<Col sm="8">

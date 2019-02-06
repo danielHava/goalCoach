@@ -17,7 +17,7 @@ class TaskManager extends Component {
             <Container className="mt-3">
                 <Row className="mt-5 mb-5">
                     <Col>
-                        <Title name="Dani" />
+                        <Title name={this.props.userName} />
                     </Col>
                 </Row>
                 <AddGoal />
@@ -29,8 +29,9 @@ class TaskManager extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('state', state);
-    return {};
+    return {
+        userName: state.user.displayName
+    };
 }
 
 export default connect(mapStateToProps, null)(TaskManager);

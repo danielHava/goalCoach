@@ -8,7 +8,11 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Button
+    Button,
+    DropdownMenu,
+    DropdownItem,
+    Dropdown,
+    DropdownToggle
 } from 'reactstrap';
 import { showSignInModal, userLogOut } from '../actions'
 import { connect } from 'react-redux';
@@ -29,18 +33,26 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
+            isNavbarOpen: false,
+            isUserDropdownOpen: false,
             error: {
 				message: ''
 			}
         };
-        this.toggle = this.toggle.bind(this);
+        this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.toggleUserDropdown = this.toggleUserDropdown.bind(this);
         this.signOut = this.signOut.bind(this);
     }
 
-    toggle() {
+    toggleNavbar() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isNavbarOpen: !this.state.isNavbarOpen
+        });
+    }
+
+    toggleUserDropdown() {
+        this.setState({
+            isUserDropdownOpen: !this.state.isUserDropdownOpen
         });
     }
 
@@ -53,21 +65,38 @@ class Header extends Component {
         const UserActions = () => {
             if(!this.props.user.isAuthenticated){
                 return(
-                    <NavLink>
-                        <Button 
-                            onClick={() => this.props.signInModal()}>
-                            <span>Login</span>
-                        </Button>
-                    </NavLink>
+                    <NavItem>
+                        <NavLink>
+                            <Button 
+                                onClick={() => this.props.signInModal()}>
+                                <span>Login</span>
+                            </Button>
+                        </NavLink>
+                    </NavItem>
                 );
             }else{
                 return(
-                    <NavLink>
-                        <Button 
-                            onClick={() => this.signOut()}>
-                            <span>Sign Out</span>
-                        </Button>
-                    </NavLink>
+                    <NavItem style={{display: 'inline-flex'}}>
+                        <NavLink>
+                            <Dropdown isOpen={this.state.isUserDropdownOpen} toggle={this.toggleUserDropdown}>
+                                <DropdownToggle caret>
+                                    {this.props.user.displayName}
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem header>User Profile</DropdownItem>
+                                    <DropdownItem>Edit</DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>Foo Action</DropdownItem>
+                                    <DropdownItem>Bar Action</DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem
+                                        onClick={() => this.signOut()}>
+                                        <span>Sign Out</span>
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
+                        </NavLink>
+                    </NavItem>
                 );
             }
         }
@@ -82,8 +111,8 @@ class Header extends Component {
                         url="/"
                         iconColour="#d81b60"
                         iconSize="2x" />
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
+                    <NavbarToggler onClick={this.toggleNavbar} />
+                    <Collapse isOpen={this.state.isNavbarOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink href="/">
@@ -111,9 +140,7 @@ class Header extends Component {
                                     <FontAwesomeIcon icon="rocket" color="#007bff" size="1x" className="ml-1 earn_points"/>
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <UserActions />
-                            </NavItem>
+                            <UserActions />
                         </Nav>
                     </Collapse>
                 </Container>
